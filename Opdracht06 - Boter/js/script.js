@@ -2,7 +2,7 @@ var player1 = "X";
 var player2 = "O";
 var currentPlayer = player1;
 
-var move = 1;
+var move = 0;
 var gameDone = false;
 
 var box1 = "";
@@ -16,14 +16,14 @@ var box8 = "";
 var box9 = "";
 
 function switchPlayer(){
-    move--;
+    move++;
     if(currentPlayer == player1){
         currentPlayer = player2;
     }
     else{
         currentPlayer = player1;
     }
-    document.querySelector('#info').innerHTML = "Player" + ((move%2)+1) + " (" + currentPlayer + ") - Move: " + (move);
+    document.querySelector('#info').innerHTML = "Player" + ((move%2)+1) + " (" + currentPlayer + ") + move" + (move+1);
 }
 
 function registerClick(boxNumber){
@@ -155,7 +155,7 @@ function checkWin(){
         document.querySelector('#info').innerHTML = "Player" + ((move%2)+1) + " (" + currentPlayer + ") WINS in " + (move-1) + " moves";
         document.querySelector(".box1").style.opacity = 0.5;
         document.querySelector(".box2").style.opacity = 0.5;
-        document.querySelector(".box3").style.opacity = 0.5;
+        // document.querySelector(".box3").style.opacity = 0.5;
         document.querySelector(".box4").style.opacity = 0.5;
         // document.querySelector(".box5").style.opacity = 0.5;
         document.querySelector(".box6").style.opacity = 0.5;
@@ -208,7 +208,7 @@ function checkWin(){
     }
 
     // vertikaal |||
-    if(box7 == "O" && box7 == "O" && box7 == "O"){
+    if(box1 == "O" && box4 == "O" && box7 == "O"){
         document.querySelector('#info').innerHTML = "Player" + ((move%2)+1) + " (" + currentPlayer + ") WINS in " + (move-1) + " moves";
         // document.querySelector(".box1").style.opacity = 0.5;
         document.querySelector(".box2").style.opacity = 0.5;
@@ -221,6 +221,7 @@ function checkWin(){
         document.querySelector(".box9").style.opacity = 0.5;
         gameDone = true;
     }
+
     if(box2 == "O" && box5 == "O" && box8 == "O"){
         document.querySelector('#info').innerHTML = "Player" + ((move%2)+1) + " (" + currentPlayer + ") WINS in " + (move-1) + " moves";
         document.querySelector(".box1").style.opacity = 0.5;

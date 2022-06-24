@@ -15,7 +15,7 @@ var currentPlayer = player1;
 var move = 1;
 var gameDone = false;
 var winnerSymbol = "";
-document.querySelector("#resetbutton").disabled = true;
+document.querySelector("#resetbutton").disabled = false;
 
 var box = [1,2,3,4,5,6,7,8,9];
 
@@ -83,26 +83,28 @@ function checkWin(){
         //diagonaal
         if(box[0] === box[4] && box[4] === box[8]){
             winnerSymbol = currentPlayer.symbol;
-            showWinningCombination([2,4,6]);
+            showWinningCombination([0,4,8]);
         }  
         if(box[2] === box[4] && box[4] === box[6]){
             winnerSymbol = currentPlayer.symbol;
-            showWinningCombination([0,4,8]);
+            showWinningCombination([2,4,6]);
         }
          
     }
+
     if(winnerSymbol != ""){
         if(player1.symbol == winnerSymbol){
             player1.points++;
         }
         else{
-            player1.points++;
+            player2.points++;
         }
-        gameDone = false;
+        gameDone = true;
         console.log(currentPlayer.name + " wins!")
         document.querySelector("#points").innerHTML = "Points: " + currentPlayer.points;
-        document.querySelector("#resetbutton").disabled = true;
-    }    
+        document.querySelector("#resetbutton").disabled = false;
+    }     
+    
 }
 
 function showWinningCombination(arrWinningBoxes){
@@ -123,5 +125,6 @@ function resetBoard(){
     box = [1,2,3,4,5,6,7,8,9];
     for (let i = 0; i < 9; i++) {
         document.getElementsByClassName("box")[i].innerHTML = i+1;
+        document.getElementsByClassName("box")[i].style.opacity = 1;
     }
 }
